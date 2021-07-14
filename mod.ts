@@ -1,4 +1,4 @@
-import { isMessageReceive, isVerification } from './utils.ts'
+import { isMessageReceive, isVerification } from "./utils.ts";
 
 const APP_ID = Deno.env.get("APP_ID");
 const APP_SECRET = Deno.env.get("APP_SECRET");
@@ -7,6 +7,16 @@ const APP_VERIFICATION_TOKEN = Deno.env.get("APP_VERIFICATION_TOKEN");
 async function handleRequest(request: Request) {
   // 只接收 POST 请求
   if (request.method.toUpperCase() !== "POST") {
+    if (!APP_ID || !APP_SECRET || !APP_VERIFICATION_TOKEN) {
+      return new Response(
+        "请先设置 APP_ID、APP_SECRET、APP_VERIFICATION_TOKEN 环境变量",
+        {
+          status: 200,
+          headers: { "content-type": "text/plain" },
+        },
+      );
+    }
+
     return send();
   }
 
