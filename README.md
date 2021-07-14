@@ -4,13 +4,6 @@
 
 > 部署在 Deno Deploy
 
-加入飞书群:
-[Deno 机器人讨论群](https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=f20saca4-e846-4e99-a12c-3c1cb4111767)
-
-<p align="center">
-    <img width="320" alt="Buy me a coffee" src="./assets/feishu_qrcode.png"/>
-</p>
-
 ## 使用
 
 ### 1. 前置工作
