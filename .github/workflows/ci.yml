@@ -1,0 +1,27 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: ${{ matrix.kind }} ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macOS-latest, ubuntu-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Deno
+        uses: denoland/setup-deno
+
+      - name: Format check
+        run: deno fmt --check
+
+      - name: Deploy check
+        run: |
+          deno install -Afr --no-check https://deno.land/x/deploy/deployctl.ts
+          deployctl check mod.ts
+
+      - name: Tests
+        run: deno test --unstable
